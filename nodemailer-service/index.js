@@ -2,7 +2,7 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swaggerSetup.js";
-import { sendEmail } from "./emailSenderConfig.js";
+import { sendEmail } from "./emailSender.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -17,12 +17,11 @@ app.use(cors());
 
 app.post("/feedback", (req, res) => {
   console.log("Request Body:", req.body); 
-  console.log("Email:", req.body.email);
   const mailOptions = {
     from: req.body.email || "no-reply@example.com",
     to: process.env.SERVICE_EMAIL,
     subject: "Portfolio Site Visitor Feedback",
-    text: `Likelihood: ${req.body.feedback}\nComment: ${req.body.comments}\nFrom: ${req.body.email}`,
+    text: `From: ${req.body.email}\nLikelihood: ${req.body.feedback}\nComment: ${req.body.comments}`,
   };
 
   sendEmail(mailOptions)

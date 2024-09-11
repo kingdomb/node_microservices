@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node --inspect index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -30,21 +30,5 @@
     "jest-html-reporter": "^3.10.2",
     "jest-junit": "^16.0.0",
     "supertest": "^6.3.4"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "verbose": true,
-    "reporters": [
-      "default",
-      [
-        "jest-html-reporter",
-        {
-          "outputPath": "./reports/test-report.html"
-        }
-      ]
-    ]
   }
 }
